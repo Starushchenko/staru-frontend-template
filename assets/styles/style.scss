@@ -1,7 +1,7 @@
 // assets and script style addons
 
 // global styles
-@import "normalize.scss";
+@import "reset.scss";
 @import "variables.scss";
 @import "mixins.scss";
 @import "scaffolding.scss";
@@ -9,4 +9,4 @@
 @import "svg_sprite.scss";
 
 // BEM blocks
-@import "../../blocks/some/some.scss";
+@import "../../blocks/tabs/tabs.scss";
