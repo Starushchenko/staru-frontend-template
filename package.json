@@ -37,7 +37,8 @@
   "scripts": {
     "test": "editorconfig-cli",
     "build": "gulp build",
-    "start": "gulp serve"
+    "start": "gulp serve",
+    "blockcss": "gulp block-css"
   },
   "editorconfig-cli": [
     "pages/*.html",

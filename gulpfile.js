@@ -119,6 +119,30 @@ gulp.task("style", function () {
 });
 
 
+// compiles blocks scss in css separately
+// then puts minified css into build/blocks-css
+gulp.task('block-css', function() {
+	return gulp.src('blocks/**/*.scss')
+	.pipe(sass())
+	.pipe(postcss([
+		autoprefixer({
+			browsers: [
+				"last 4 version",
+				"last 4 Chrome versions",
+				"last 4 Firefox versions",
+				"last 4 Opera versions",
+				"last 4 Edge versions"
+			]
+		}),
+		mqpacker({
+			sort: true
+		})
+	]))
+	.pipe(minify())
+	.pipe(gulp.dest('build/blocks-css'))
+});
+
+
 // minifies compiled script.js in build (rename to script.min.js)
 gulp.task("jsmin", function () {
 	return gulp.src("assets/js/script.js")
