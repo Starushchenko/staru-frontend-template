@@ -1,0 +1,137 @@
+// В этом файле должны быть стили для БЭМ-блока accordion, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий
+@import "../../assets/styles/variables.scss";
+@import "../../assets/styles/mixins.scss";
+
+.accordion {
+	width: 100%;
+	background: #4d5158;
+	margin: 4em auto;
+}
+
+.accordion__item-content {
+	/* by default hide all sub menus */
+	display: none;
+	background: #fff;
+	padding: 25px 15px;
+}
+
+.accordion__item-body {
+	p {
+		line-height: 23px;
+		font-size: 16px;
+		margin-bottom: 0.7em;
+	}
+}
+
+.accordion__item-image img {
+	margin-bottom: 20px;
+}
+
+.accordion__parent-item {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.accordion__toggler {
+	/* hide native checkbox */
+	position: absolute;
+	opacity: 0;
+}
+
+.accordion__label {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 25px 15px 25px 25px;
+	color: #ffffff;
+	font-size: 1.6rem;
+	min-height: 100px;
+	cursor: pointer;
+	background: #e4e4e4;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.accordion__label svg {
+	fill: #686868;
+}
+
+.accordion__label-title {
+	font-size: 18px;
+	line-height: 26px;
+	flex-grow: 1;
+	padding-left: 20px;
+	color: #000;
+}
+
+.no-touch .accordion__label:hover {
+	background: #52565d;
+}
+
+.accordion__label::after {
+	content: '';
+	display: inline-block;
+	min-width: 34px;
+	height: 19px;
+	position: static;
+	background-image: url(../img/accordion-arrow.svg);
+	background-repeat: no-repeat;
+}
+
+.accordion__toggler:checked + .accordion__label {
+	background: #99bd7c;
+	box-shadow: none;
+
+	svg {
+		fill: #fff;
+	}
+
+	.accordion__label-title {
+		color: #fff;
+		font-weight: bold;
+	}
+}
+
+.accordion__toggler:checked + label::after {
+	/* rotate arrow */
+	transform: rotate(180deg);
+}
+
+.accordion__toggler:checked + label + div,
+.accordion__toggler:checked + label:nth-of-type(n) + div {
+	/* use label:nth-of-type(n) to fix a bug on safari (<= 8.0.8) with multiple adjacent-sibling selectors*/
+	/* show children when item is checked */
+	display: block;
+}
+
+@media only screen and (min-width: 600px) {
+	.accordion__label {
+		padding: 10px;
+		font-size: 1.9rem;
+	}
+	.accordion__label::after {
+		right: 24px;
+	}
+}
+
+.accordion--animated label::after {
+	/* this class is used if you're using jquery to animate the accordion */
+	-webkit-transition: -webkit-transform 0.3s;
+	-moz-transition: -moz-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+@media (max-width: 768px) {
+	.accordion {
+		display: block;
+	}
+}
+
+@media (max-width: 400px) {
+	.accordion__label svg {
+		max-width: 60px;
+	}
+}

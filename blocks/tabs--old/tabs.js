@@ -18,7 +18,10 @@ jQuery(document).ready(function($){
 				tabItems.find('a.selected').removeClass('selected');
 				selectedItem.addClass('selected');
 				selectedContent.addClass('selected').siblings('li').removeClass('selected');
-
+				//animate tabContentWrapper height when content changes 
+				tabContentWrapper.animate({
+					'height': selectedContentHeight
+				}, 200);
 			}
 		});
 

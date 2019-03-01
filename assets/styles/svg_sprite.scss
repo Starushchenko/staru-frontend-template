@@ -2,12 +2,92 @@
 	background: url("../img/svgsprite.css.svg") no-repeat;
 }
 
-._svg-icon-tabs--img--vicons {
+._svg-icon-accordion--img--accordion-arrow {
 	@extend %svg-common;
 	background-position: 0 0;
 }
 
+._svg-icon-accordion--img--accordion-arrow-dims {
+	width: 32px;
+	height: 19px;
+}
+
+._svg-icon-accordion--img--cd-icons {
+	@extend %svg-common;
+	background-position: 0 22.89156626506024%;
+}
+
+._svg-icon-accordion--img--cd-icons-dims {
+	width: 32px;
+	height: 8px;
+}
+
+._svg-icon-tabs--img--design {
+	@extend %svg-common;
+	background-position: 0 45.76271186440678%;
+}
+
+._svg-icon-tabs--img--design-dims {
+	width: 32px;
+	height: 32px;
+}
+
+._svg-icon-tabs--img--gardening {
+	@extend %svg-common;
+	background-position: 50% 0;
+}
+
+._svg-icon-tabs--img--gardening-dims {
+	width: 32px;
+	height: 32px;
+}
+
+._svg-icon-tabs--img--green-roofs {
+	@extend %svg-common;
+	background-position: 100% 0;
+}
+
+._svg-icon-tabs--img--green-roofs-dims {
+	width: 32px;
+	height: 32px;
+}
+
+._svg-icon-tabs--img--landing {
+	@extend %svg-common;
+	background-position: 0 100%;
+}
+
+._svg-icon-tabs--img--landing-dims {
+	width: 32px;
+	height: 32px;
+}
+
+._svg-icon-tabs--img--landscaping {
+	@extend %svg-common;
+	background-position: 100% 47.14896124944747%;
+}
+
+._svg-icon-tabs--img--landscaping-dims {
+	width: 32px;
+	height: 23.13px;
+}
+
+._svg-icon-tabs--img--vicons {
+	@extend %svg-common;
+	background-position: 50% 39.83567782895556%;
+}
+
 ._svg-icon-tabs--img--vicons-dims {
+	width: 32px;
+	height: 10.67px;
+}
+
+._svg-icon-tabs--old--img--vicons {
+	@extend %svg-common;
+	background-position: 50% 53.11838665504793%;
+}
+
+._svg-icon-tabs--old--img--vicons-dims {
 	width: 32px;
 	height: 10.67px;
 }
