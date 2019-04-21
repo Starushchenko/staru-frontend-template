@@ -1,0 +1,67 @@
+// В этом файле должны быть стили для БЭМ-блока elastic-elastic-tabs, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий
+@import "../../assets/styles/variables.scss";
+@import "../../assets/styles/mixins.scss";
+
+.elastic-tabs {
+	font-size: 15px;
+	padding: 0px;
+	list-style: none;
+	background: #fff;
+	border-bottom: 1px solid #D9D9D9;
+	display: inline-block;
+	border-radius: 0;
+	position: relative;
+	min-width: 690px;
+}
+
+.elastic-tabs__item {
+	text-decoration: none;
+	font-size: 18px;
+	color: #8A8A8A;
+	text-transform: uppercase;
+	padding: 10px 20px;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	transition-duration: 0.6s;
+	cursor: pointer;
+}
+
+.elastic-tabs .elastic-tabs__item--active{
+	color: #3E8CD7;
+}
+
+.elastic-tabs .elastic-tabs__range {
+	height: 100%;
+	display: inline-block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 1;
+	border-radius: 0;
+	transition-duration: 0.6s;
+	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.2);
+
+	background: #fff;
+	color: #3E8CD7;
+	border-bottom: 1px solid #3E8CD7;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#05abe0', endColorstr='#8200f4', GradientType=1);
+}
+
+@media (max-width: 991px) {
+	.elastic-tabs {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
+	.elastic-tabs__range {
+		flex-grow: 1;
+	}
+}
+
+@media (max-width: 768px) {
+	div.elastic-tabs {
+		display: none;
+	}
+}
