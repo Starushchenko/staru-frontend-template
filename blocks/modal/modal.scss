@@ -61,7 +61,9 @@
 }
 
 .modal__trigger {
-	display: inline-block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	height: 50px;
 	cursor: pointer;
 	font-weight: bold;
@@ -195,4 +197,39 @@
 
 .modal__input-required {
 	color: #f5821f;
+}
+
+
+/**
+ * Fade-zoom animation for modal
+ */
+
+/* start state */
+.mfp-zoom-in .zoom-anim-dialog {
+	opacity: 0;
+	transition: all 0.2s ease-in-out;
+}
+
+/* animate in */
+.mfp-zoom-in.mfp-ready .zoom-anim-dialog {
+	opacity: 1;
+}
+
+/* animate out */
+.mfp-zoom-in.mfp-removing .zoom-anim-dialog {
+	opacity: 0;
+}
+
+/* Dark overlay, start state */
+.mfp-zoom-in.mfp-bg {
+	opacity: 0;
+	transition: opacity 0.3s ease-out;
+}
+/* animate in */
+.mfp-zoom-in.mfp-ready.mfp-bg {
+	opacity: 0.8;
+}
+/* animate out */
+.mfp-zoom-in.mfp-removing.mfp-bg {
+	opacity: 0;
 }

@@ -2,9 +2,24 @@
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+jQuery(document).ready(function () {
+  var accordionsMenu = $('.accordion');
+
+  if (accordionsMenu.length > 0) {
+    accordionsMenu.each(function () {
+      var accordion = $(this); //detect change in the input[type="checkbox"] value
+
+      accordion.on('change', '.accordion__toggler', function () {
+        var checkbox = $(this);
+        checkbox.prop('checked') ? checkbox.siblings('.accordion__item-content').attr('style', 'display:none;').slideDown(300) : checkbox.siblings('.accordion__item-content').attr('style', 'display:block;').slideUp(300);
+      });
+    });
+  }
+});
 /*! Magnific Popup - v1.1.0 - 2016-02-20
  * http://dimsemenov.com/plugins/magnific-popup/
  * Copyright (c) 2016 Dmitry Semenov; */
+
 ;
 
 (function (factory) {
@@ -1769,30 +1784,30 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
   _checkInstance();
 });
-/* Open modal by clicking on element that has the same href attribute as modal id attribute */
-
 
 $(document).ready(function () {
-  $('.modal__trigger').magnificPopup({
-    type: 'inline',
-    closeOnBgClick: true,
-    showCloseBtn: false
-  });
-});
-jQuery(document).ready(function () {
-  var accordionsMenu = $('.accordion');
-
-  if (accordionsMenu.length > 0) {
-    accordionsMenu.each(function () {
-      var accordion = $(this); //detect change in the input[type="checkbox"] value
-
-      accordion.on('change', '.accordion__toggler', function () {
-        var checkbox = $(this);
-        checkbox.prop('checked') ? checkbox.siblings('.accordion__item-content').attr('style', 'display:none;').slideDown(300) : checkbox.siblings('.accordion__item-content').attr('style', 'display:block;').slideUp(300);
-      });
+  if ($('.js_modal-trigger-zoom')) {
+    var zoomModalTrigger = $('.js_modal-trigger-zoom');
+    var triggerDataHref = zoomModalTrigger.attr('data-href');
+    zoomModalTrigger.attr('href', triggerDataHref);
+    zoomModalTrigger.magnificPopup({
+      type: 'inline',
+      fixedContentPos: false,
+      fixedBgPos: true,
+      overflowY: 'auto',
+      showCloseBtn: false,
+      preloader: false,
+      midClick: true,
+      removalDelay: 300,
+      mainClass: 'mfp-zoom-in'
     });
   }
 });
+
+function closePopup() {
+  $.magnificPopup.close();
+}
+
 jQuery(document).ready(function ($) {
   var tabs = $('.tabs');
   tabs.each(function () {
@@ -1810,11 +1825,7 @@ jQuery(document).ready(function ($) {
             selectedContentHeight = selectedContent.innerHeight();
         tabItems.find('a.selected').removeClass('selected');
         selectedItem.addClass('selected');
-        selectedContent.addClass('selected').siblings('li').removeClass('selected'); //animate tabContentWrapper height when content changes 
-
-        tabContentWrapper.animate({
-          'height': selectedContentHeight
-        }, 200);
+        selectedContent.addClass('selected').siblings('li').removeClass('selected');
       }
     }); //hide the .tabs::after element when tabbed navigation has scrolled to the end (mobile version)
 
@@ -1859,7 +1870,11 @@ jQuery(document).ready(function ($) {
             selectedContentHeight = selectedContent.innerHeight();
         tabItems.find('a.selected').removeClass('selected');
         selectedItem.addClass('selected');
-        selectedContent.addClass('selected').siblings('li').removeClass('selected');
+        selectedContent.addClass('selected').siblings('li').removeClass('selected'); //animate tabContentWrapper height when content changes 
+
+        tabContentWrapper.animate({
+          'height': selectedContentHeight
+        }, 200);
       }
     }); //hide the .tabs::after element when tabbed navigation has scrolled to the end (mobile version)
 
