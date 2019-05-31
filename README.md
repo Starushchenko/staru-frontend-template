@@ -167,3 +167,9 @@ eclint fix "./blocks/**"          # - исправит ошибки формат
 [Подробнее о способах подключения svg-спрайтов](https://uwebdesign.ru/svg-sprites/).
 
 [Подробнее о способе symbols и use xlink](http://dreamhelg.ru/2017/02/symbol-svg-sprite-detail-guide/)
+
+
+
+## Встраивание критического CSS для index.html (тестирование)
+
+В ходе выполнения команды ` npm run build ` в head файла index.html инлайново встраиваются стили, необходимые для отрисовки первого экрана, при этом основной style.min.css загружается асинхронно, не задерживая рендеринг контента. Используется модуль [Critical](https://github.com/addyosmani/critical) от [Эдди Османи](https://github.com/addyosmani).

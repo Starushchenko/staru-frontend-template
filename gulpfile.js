@@ -231,6 +231,31 @@ gulp.task("watch", ["style"], function () {
 });
 
 
+// inline critical CSS for first screen into head
+gulp.task("criticalCSS", function () {
+	critical.generate({
+		inline: true,
+		base: 'build/',
+		src: 'index.html',
+		dest: 'index.html',
+		dimensions: [
+			{
+				height: 320,
+				width: 660,
+			},
+			{
+				height: 768,
+				width: 1024,
+			},
+			{
+				height: 1280,
+				width: 768,
+			},
+		],
+	});
+});
+
+
 //start
 gulp.task("serve", function () {
 	run("clean", "concat", "htmlimport", "htmlbeautify", "copyAssets", "copybemimages", "jsmin", "svgsprite", "style", "watch" /*, "images", "svgimages"*/)
@@ -239,6 +264,6 @@ gulp.task("serve", function () {
 
 // build
 gulp.task("build", function () {
-	run("clean", "concat", "htmlimport", "htmlbeautify", "copyAssets", "copybemimages", "jsmin", "svgsprite", "style", "images", "svgimages")
+	run("clean", "concat", "htmlimport", "htmlbeautify", "copyAssets", "copybemimages", "jsmin", "svgsprite", "style", "images", "svgimages", "criticalCSS")
 });
 
