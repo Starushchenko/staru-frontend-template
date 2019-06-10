@@ -174,3 +174,9 @@ eclint fix "./blocks/**"          # - исправит ошибки формат
 [Подробнее о способах подключения svg-спрайтов](https://uwebdesign.ru/svg-sprites/).
 
 [Подробнее о способе symbols и use xlink](http://dreamhelg.ru/2017/02/symbol-svg-sprite-detail-guide/)
+
+
+
+## Исправления и доработки
+
+Был добавлен пользовательский [метод сортировки стилей](https://www.npmjs.com/package/sort-css-media-queries) (mobile-first / desktop-first) для css-mqpacker Олега Дутченко, таким образом исправлена ошибка с переопределением стилей при разработке dekstop first. Если проект разрабатывается в методологии mobile first, необходимо заменить строку 112 в gulpfile.js на "sort: sortCSSmq"

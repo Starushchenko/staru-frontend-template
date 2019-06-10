@@ -24,6 +24,7 @@ let concat = require('gulp-concat');
 let copy = require('gulp-copy');
 let htmlbeautify = require('gulp-html-beautify');
 let wait = require('gulp-wait');
+let sortCSSmq = require('sort-css-media-queries');
 
 
 // cleans build-directory
@@ -90,6 +91,7 @@ gulp.task('htmlbeautify', function () {
 
 // compiles main scss in css
 // then puts minified css into build/css
+// ON LINE 112: use "sort: sortCSSmq.desktopFirst" if dekstop first project or "sort: sortCSSmq" if mobile first
 gulp.task("style", function () {
 	gulp.src("assets/styles/style.scss")
 	.pipe(wait(200))
@@ -107,7 +109,7 @@ gulp.task("style", function () {
 			]
 		}),
 		mqpacker({
-			sort: true
+			sort: sortCSSmq.desktopFirst
 		})
 	]))
 	.pipe(gulp.dest("build/css"))
