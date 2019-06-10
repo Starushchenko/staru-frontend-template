@@ -137,7 +137,7 @@ gulp.task('block-css', function() {
 			]
 		}),
 		mqpacker({
-			sort: true
+			sort: sortCSSmq.desktopFirst
 		})
 	]))
 	.pipe(minify())

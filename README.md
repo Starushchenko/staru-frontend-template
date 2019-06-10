@@ -179,4 +179,4 @@ eclint fix "./blocks/**"          # - исправит ошибки формат
 
 ## Исправления и доработки
 
-Был добавлен пользовательский [метод сортировки стилей](https://www.npmjs.com/package/sort-css-media-queries) (mobile-first / desktop-first) для css-mqpacker Олега Дутченко, таким образом исправлена ошибка с переопределением стилей при разработке dekstop first. Если проект разрабатывается в методологии mobile first, необходимо заменить строку 112 в gulpfile.js на "sort: sortCSSmq"
+Был добавлен пользовательский [метод сортировки стилей](https://www.npmjs.com/package/sort-css-media-queries) (mobile-first / desktop-first) для css-mqpacker Олега Дутченко, таким образом исправлена ошибка с переопределением стилей при разработке dekstop first. Если проект разрабатывается в методологии mobile first, необходимо заменить строки 112 и 140 в gulpfile.js на "sort: sortCSSmq"
