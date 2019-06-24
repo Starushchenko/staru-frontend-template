@@ -2,20 +2,6 @@
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-jQuery(document).ready(function () {
-  var accordionsMenu = $('.accordion');
-
-  if (accordionsMenu.length > 0) {
-    accordionsMenu.each(function () {
-      var accordion = $(this); //detect change in the input[type="checkbox"] value
-
-      accordion.on('change', '.accordion__toggler', function () {
-        var checkbox = $(this);
-        checkbox.prop('checked') ? checkbox.siblings('.accordion__item-content').attr('style', 'display:none;').slideDown(300) : checkbox.siblings('.accordion__item-content').attr('style', 'display:block;').slideUp(300);
-      });
-    });
-  }
-});
 $(document).ready(function () {
   var tabs = $('.elastic-tabs');
   var items = $('.elastic-tabs').find('.elastic-tabs__item').length;
@@ -37,6 +23,94 @@ $(document).ready(function () {
       "width": activeWidth + "px"
     });
   });
+});
+document.addEventListener('DOMContentLoaded', function () {
+  $('.technologies__list').slick({
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    arrows: false,
+    responsive: [{
+      breakpoint: 700,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true
+      } // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+
+    }]
+  });
+  $('.technologies__list').on('wheel', function (e) {
+    e.preventDefault();
+
+    if (e.originalEvent.deltaY < 0) {
+      $(this).slick('slickPrev');
+    } else {
+      $(this).slick('slickNext');
+    }
+  });
+});
+jQuery(document).ready(function () {
+  var accordionsMenu = $('.accordion');
+
+  if (accordionsMenu.length > 0) {
+    accordionsMenu.each(function () {
+      var accordion = $(this); //detect change in the input[type="checkbox"] value
+
+      accordion.on('change', '.accordion__toggler', function () {
+        var checkbox = $(this);
+        checkbox.prop('checked') ? checkbox.siblings('.accordion__item-content').attr('style', 'display:none;').slideDown(300) : checkbox.siblings('.accordion__item-content').attr('style', 'display:block;').slideUp(300);
+      });
+    });
+  }
+});
+jQuery(document).ready(function ($) {
+  var tabs = $('.tabs');
+  tabs.each(function () {
+    var tab = $(this),
+        tabItems = tab.find('ul.tabs__navigation'),
+        tabContentWrapper = tab.children('ul.tabs__content'),
+        tabNavigation = tab.find('nav');
+    tabItems.on('click', 'a', function (event) {
+      event.preventDefault();
+      var selectedItem = $(this);
+
+      if (!selectedItem.hasClass('selected')) {
+        var selectedTab = selectedItem.data('content'),
+            selectedContent = tabContentWrapper.find('li[data-content="' + selectedTab + '"]'),
+            selectedContentHeight = selectedContent.innerHeight();
+        tabItems.find('a.selected').removeClass('selected');
+        selectedItem.addClass('selected');
+        selectedContent.addClass('selected').siblings('li').removeClass('selected');
+      }
+    }); //hide the .tabs::after element when tabbed navigation has scrolled to the end (mobile version)
+
+    checkScrolling(tabNavigation);
+    tabNavigation.on('scroll', function () {
+      checkScrolling($(this));
+    });
+  });
+  $(window).on('resize', function () {
+    tabs.each(function () {
+      var tab = $(this);
+      checkScrolling(tab.find('nav'));
+      tab.find('.tabs__content').css('height', 'auto');
+    });
+  });
+
+  function checkScrolling(tabs) {
+    var totalTabWidth = parseInt(tabs.children('.tabs__navigation').width()),
+        tabsViewport = parseInt(tabs.width());
+
+    if (tabs.scrollLeft() >= totalTabWidth - tabsViewport) {
+      tabs.parent('.tabs').addClass('is-ended');
+    } else {
+      tabs.parent('.tabs').removeClass('is-ended');
+    }
+  }
 });
 /*! Magnific Popup - v1.1.0 - 2016-02-20
  * http://dimsemenov.com/plugins/magnific-popup/
@@ -1829,49 +1903,3 @@ $(document).ready(function () {
 function closePopup() {
   $.magnificPopup.close();
 }
-
-jQuery(document).ready(function ($) {
-  var tabs = $('.tabs');
-  tabs.each(function () {
-    var tab = $(this),
-        tabItems = tab.find('ul.tabs__navigation'),
-        tabContentWrapper = tab.children('ul.tabs__content'),
-        tabNavigation = tab.find('nav');
-    tabItems.on('click', 'a', function (event) {
-      event.preventDefault();
-      var selectedItem = $(this);
-
-      if (!selectedItem.hasClass('selected')) {
-        var selectedTab = selectedItem.data('content'),
-            selectedContent = tabContentWrapper.find('li[data-content="' + selectedTab + '"]'),
-            selectedContentHeight = selectedContent.innerHeight();
-        tabItems.find('a.selected').removeClass('selected');
-        selectedItem.addClass('selected');
-        selectedContent.addClass('selected').siblings('li').removeClass('selected');
-      }
-    }); //hide the .tabs::after element when tabbed navigation has scrolled to the end (mobile version)
-
-    checkScrolling(tabNavigation);
-    tabNavigation.on('scroll', function () {
-      checkScrolling($(this));
-    });
-  });
-  $(window).on('resize', function () {
-    tabs.each(function () {
-      var tab = $(this);
-      checkScrolling(tab.find('nav'));
-      tab.find('.tabs__content').css('height', 'auto');
-    });
-  });
-
-  function checkScrolling(tabs) {
-    var totalTabWidth = parseInt(tabs.children('.tabs__navigation').width()),
-        tabsViewport = parseInt(tabs.width());
-
-    if (tabs.scrollLeft() >= totalTabWidth - tabsViewport) {
-      tabs.parent('.tabs').addClass('is-ended');
-    } else {
-      tabs.parent('.tabs').removeClass('is-ended');
-    }
-  }
-});

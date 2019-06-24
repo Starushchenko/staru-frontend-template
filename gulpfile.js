@@ -25,6 +25,7 @@ let copy = require('gulp-copy');
 let htmlbeautify = require('gulp-html-beautify');
 let wait = require('gulp-wait');
 let sortCSSmq = require('sort-css-media-queries');
+let critical = require('critical');
 
 
 // cleans build-directory
@@ -118,6 +119,34 @@ gulp.task("style", function () {
 	.pipe(sourcemaps.write())
 	.pipe(gulp.dest("build/css"))
 	.pipe(server.stream());
+});
+
+
+// compiles main scss in css
+// then puts minified css into build/css WITHOUT SOURCEMAP
+gulp.task("style-prod", function () {
+	gulp.src("assets/styles/style.scss")
+	.pipe(wait(200))
+	.pipe(plumber())
+	.pipe(sass())
+	.pipe(postcss([
+		autoprefixer({
+			browsers: [
+				"last 4 version",
+				"last 4 Chrome versions",
+				"last 4 Firefox versions",
+				"last 4 Opera versions",
+				"last 4 Edge versions"
+			]
+		}),
+		mqpacker({
+			sort: sortCSSmq.desktopFirst
+		})
+	]))
+	.pipe(gulp.dest("build/css"))
+	.pipe(minify())
+	.pipe(rename("style.min.css"))
+	.pipe(gulp.dest("build/css"))
 });
 
 
@@ -242,16 +271,16 @@ gulp.task("criticalCSS", function () {
 		dest: 'index.html',
 		dimensions: [
 			{
-				height: 320,
-				width: 660,
+				width: 320,
+				height: 660,
 			},
 			{
-				height: 768,
-				width: 1024,
-			},
-			{
-				height: 1280,
 				width: 768,
+				height: 1024,
+			},
+			{
+				width: 1280,
+				height: 768,
 			},
 		],
 	});
@@ -266,6 +295,6 @@ gulp.task("serve", function () {
 
 // build
 gulp.task("build", function () {
-	run("clean", "concat", "htmlimport", "htmlbeautify", "copyAssets", "copybemimages", "jsmin", "svgsprite", "style", "images", "svgimages", "criticalCSS")
+	run("clean", "concat", "htmlimport", "htmlbeautify", "style-prod", "copyAssets", "copybemimages", "jsmin", "svgsprite", "images", "svgimages", "criticalCSS")
 });
 

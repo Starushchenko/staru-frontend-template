@@ -1,0 +1,29 @@
+// В этом файле должны быть стили для БЭМ-блока technologies, его элементов, 
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий
+@import "../../assets/styles/variables.scss";
+@import "../../assets/styles/mixins.scss";
+
+.technologies {
+	@include container;
+	margin-bottom: 90px;
+}
+
+.technologies__title {
+	font-weight: 600;
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.technologies__item.slick-slide {
+	min-width: 160px;
+	height: 160px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@media (max-width: 700px) {
+	.technologies__title {
+		text-align: center;
+	}
+}
