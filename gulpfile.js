@@ -259,6 +259,11 @@ gulp.task("watch", ["style"], function () {
 		run("htmlimport");
 		server.reload();
 	});
+	gulp.watch("blocks/**/*.js").on("change", function () {
+		del("build/js/script.min.js");
+		run("concat","jsmin");
+		server.reload();
+	});
 });
 
 
