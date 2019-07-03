@@ -2,57 +2,6 @@
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-$(document).ready(function () {
-  var tabs = $('.elastic-tabs');
-  var items = $('.elastic-tabs').find('.elastic-tabs__item').length;
-  var selector = $(".elastic-tabs").find(".elastic-tabs__range");
-  var activeItem = tabs.find('.elastic-tabs__item--active');
-  var activeWidth = activeItem.innerWidth();
-  $(".elastic-tabs__range").css({
-    "left": activeItem.position.left + "px",
-    "width": activeWidth + "px"
-  });
-  $(".elastic-tabs").on("click", ".elastic-tabs__item", function (e) {
-    e.preventDefault();
-    $('.elastic-tabs__item').removeClass("elastic-tabs__item--active");
-    $(this).addClass('elastic-tabs__item--active');
-    var activeWidth = $(this).innerWidth();
-    var itemPos = $(this).position();
-    $(".elastic-tabs__range").css({
-      "left": itemPos.left + "px",
-      "width": activeWidth + "px"
-    });
-  });
-});
-document.addEventListener('DOMContentLoaded', function () {
-  $('.technologies__list').slick({
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    swipeToSlide: true,
-    arrows: false,
-    responsive: [{
-      breakpoint: 700,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        dots: true
-      } // You can unslick at a given breakpoint now by adding:
-      // settings: "unslick"
-      // instead of a settings object
-
-    }]
-  });
-  $('.technologies__list').on('wheel', function (e) {
-    e.preventDefault();
-
-    if (e.originalEvent.deltaY < 0) {
-      $(this).slick('slickPrev');
-    } else {
-      $(this).slick('slickNext');
-    }
-  });
-});
 jQuery(document).ready(function () {
   var accordionsMenu = $('.accordion');
 
@@ -1883,23 +1832,77 @@ jQuery(document).ready(function ($) {
 
 $(document).ready(function () {
   if ($('.js_modal-trigger-zoom')) {
-    var zoomModalTrigger = $('.js_modal-trigger-zoom');
-    var triggerDataHref = zoomModalTrigger.attr('data-href');
-    zoomModalTrigger.attr('href', triggerDataHref);
-    zoomModalTrigger.magnificPopup({
-      type: 'inline',
-      fixedContentPos: false,
-      fixedBgPos: true,
-      overflowY: 'auto',
-      showCloseBtn: false,
-      preloader: false,
-      midClick: true,
-      removalDelay: 300,
-      mainClass: 'mfp-zoom-in'
+    $('.js_modal-trigger-zoom').each(function () {
+      var zoomModalTrigger = $(this);
+      var triggerDataHref = zoomModalTrigger.attr('data-href');
+      zoomModalTrigger.attr('href', triggerDataHref);
+      $(this).magnificPopup({
+        type: 'inline',
+        fixedContentPos: false,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        showCloseBtn: false,
+        preloader: false,
+        midClick: true,
+        removalDelay: 300,
+        mainClass: 'mfp-zoom-in'
+      });
     });
   }
-});
 
-function closePopup() {
-  $.magnificPopup.close();
-}
+  function closePopup() {
+    $.magnificPopup.close();
+  }
+}); // needs slick.js
+
+document.addEventListener('DOMContentLoaded', function () {
+  $('.technologies__list').slick({
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    arrows: false,
+    responsive: [{
+      breakpoint: 700,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true
+      } // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+
+    }]
+  });
+  $('.technologies__list').on('wheel', function (e) {
+    e.preventDefault();
+
+    if (e.originalEvent.deltaY < 0) {
+      $(this).slick('slickPrev');
+    } else {
+      $(this).slick('slickNext');
+    }
+  });
+});
+$(document).ready(function () {
+  var tabs = $('.elastic-tabs');
+  var items = $('.elastic-tabs').find('.elastic-tabs__item').length;
+  var selector = $(".elastic-tabs").find(".elastic-tabs__range");
+  var activeItem = tabs.find('.elastic-tabs__item--active');
+  var activeWidth = activeItem.innerWidth();
+  $(".elastic-tabs__range").css({
+    "left": activeItem.position.left + "px",
+    "width": activeWidth + "px"
+  });
+  $(".elastic-tabs").on("click", ".elastic-tabs__item", function (e) {
+    e.preventDefault();
+    $('.elastic-tabs__item').removeClass("elastic-tabs__item--active");
+    $(this).addClass('elastic-tabs__item--active');
+    var activeWidth = $(this).innerWidth();
+    var itemPos = $(this).position();
+    $(".elastic-tabs__range").css({
+      "left": itemPos.left + "px",
+      "width": activeWidth + "px"
+    });
+  });
+});

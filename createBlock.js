@@ -37,7 +37,7 @@ if (blockName) {
 
                 // Если это HTML
                 else if (extention === 'html') {
-                    fileContent = `<!--DEV\nДля использования этого файла как шаблона из папки pages:\n@include "${blockName}/${blockName}.html"\n-->\n`;
+                    fileContent = `<!--DEV\nДля использования этого файла как шаблона из папки pages:\n@import "${blockName}/${blockName}.html"\n-->\n`;
                     // fileCreateMsg = '';
                 }
 

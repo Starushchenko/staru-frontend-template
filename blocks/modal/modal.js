@@ -1,26 +1,29 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
 	if ($('.js_modal-trigger-zoom')) {
-		var zoomModalTrigger = $('.js_modal-trigger-zoom');
-		var triggerDataHref = zoomModalTrigger.attr('data-href');
-		zoomModalTrigger.attr('href', triggerDataHref);
+		$('.js_modal-trigger-zoom').each(function () {
 
-		zoomModalTrigger.magnificPopup({
-			type: 'inline',
+			var zoomModalTrigger = $(this);
+			var triggerDataHref = zoomModalTrigger.attr('data-href');
+			zoomModalTrigger.attr('href', triggerDataHref);
 
-			fixedContentPos: false,
-			fixedBgPos: true,
+			$(this).magnificPopup({
+				type: 'inline',
 
-			overflowY: 'auto',
-			showCloseBtn: false,
-			preloader: false,
-			midClick: true,
-			removalDelay: 300,
-			mainClass: 'mfp-zoom-in'
+				fixedContentPos: false,
+				fixedBgPos: true,
+
+				overflowY: 'auto',
+				showCloseBtn: false,
+				preloader: false,
+				midClick: true,
+				removalDelay: 300,
+				mainClass: 'mfp-zoom-in'
+			});
 		});
 	}
-});
 
-function closePopup() {
-	$.magnificPopup.close();
-}
+	function closePopup() {
+		$.magnificPopup.close();
+	}
+});
