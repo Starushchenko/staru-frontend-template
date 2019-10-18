@@ -70,6 +70,19 @@ gulp.task('concat', function () {
 });
 
 
+// concats and minify all js vendors of gulp.src below
+gulp.task('concat-vendors', function () {
+	return gulp.src(['build/js/jquery-3.2.1.min.js', 'build/js/jquery.lazy.min.js', 'build/js/scaffolding.js', 'build/js/script.js', 'build/js/imagesloaded.pkgd.min.js', 'build/js/wow.min.js', 'build/js/masonry.pkgd.min.js', 'build/js/anime.min.js', 'build/js/gridLoading.js', 'build/js/tilt.jquery.js', 'build/js/jquery.lazy-load-google-maps.min.js', 'build/js/slick.min.js', 'build/js/vk-openapi.js'])
+	.pipe(concat('script.min.js'))
+	.pipe(jsmin({
+		output: {
+			comments: true
+		}
+	}))
+	.pipe(gulp.dest('build/js/'));
+});
+
+
 // imports html of bem-blocks into pages
 // then copies html-pages into build
 gulp.task('htmlimport', function () {
@@ -254,6 +267,13 @@ gulp.task("watch", ["style"], function () {
 	});
 
 	gulp.watch(["assets/styles/**/*.{scss,sass}", "blocks/**/*.{scss,sass}"], ["style"]);
+	gulp.watch(["blocks/**/*.js"]).on("change", function () {
+		del("build/js/script.min.js");
+		del("build/js/script.js");
+		run("concat");
+		run("jsmin");
+		server.reload();
+	});
 	gulp.watch(["./pages/*.html", "./blocks/**/*.html"]).on("change", function () {
 		del("build/*.html");
 		run("htmlimport");
@@ -287,6 +307,10 @@ gulp.task("criticalCSS", function () {
 				width: 1280,
 				height: 768,
 			},
+			{
+				width: 1920,
+				height: 1024,
+			}
 		],
 	});
 });
@@ -300,6 +324,6 @@ gulp.task("serve", function () {
 
 // build
 gulp.task("build", function () {
-	run("clean", "concat", "htmlimport", "htmlbeautify", "style-prod", "copyAssets", "copybemimages", "jsmin", "svgsprite", "images", "svgimages", "criticalCSS")
+	run("clean", "concat", "htmlimport", "htmlbeautify", "style-prod", "copyAssets", "copybemimages", "jsmin", "svgsprite", "images", "svgimages", "criticalCSS", "concat-vendors")
 });
 
