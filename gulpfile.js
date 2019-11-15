@@ -86,7 +86,7 @@ gulp.task('concat-vendors', function () {
 // imports html of bem-blocks into pages
 // then copies html-pages into build
 gulp.task('htmlimport', function () {
-	gulp.src('pages/*.html')
+	gulp.src('pages/**/*.html')
 	.pipe(htmlimport('blocks/'))
 	.pipe(replace(/\n\s*<!--DEV[\s\S]+?-->/gm, ''))
 	.pipe(gulp.dest('build/'));
@@ -190,6 +190,9 @@ gulp.task('block-css', function() {
 // minifies compiled script.js in build (rename to script.min.js)
 gulp.task("jsmin", function () {
 	return gulp.src("assets/js/script.js")
+	.pipe(babel({
+		presets: ['@babel/env']
+	}))
 	.pipe(jsmin())
 	.pipe(rename("script.min.js"))
 	.pipe(gulp.dest("build/js"));
@@ -274,12 +277,12 @@ gulp.task("watch", ["style"], function () {
 		run("jsmin");
 		server.reload();
 	});
-	gulp.watch(["./pages/*.html", "./blocks/**/*.html"]).on("change", function () {
+	gulp.watch(["./pages/**/*.html", "./blocks/**/*.html"]).on("change", function () {
 		del("build/*.html");
 		run("htmlimport");
 		server.reload();
 	});
-	gulp.watch("blocks/**/*.js").on("change", function () {
+	gulp.watch(["blocks/**/*.js","assets/**/*.js"]).on("change", function () {
 		del("build/js/script.min.js");
 		run("concat","jsmin");
 		server.reload();
