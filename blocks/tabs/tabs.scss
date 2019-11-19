@@ -1,5 +1,7 @@
 // В этом файле должны быть стили для БЭМ-блока tabs, его элементов, 
 // модификаторов, псевдоселекторов, псевдоэлементов, @media-условий
+@import "../../assets/styles/variables.scss";
+@import "../../assets/styles/mixins.scss";
 
 .tabs {
 	@include container;
