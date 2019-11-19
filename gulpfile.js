@@ -82,6 +82,9 @@ gulp.task('concat', function () {
 // concats and minify all js vendors of gulp.src below
 gulp.task('concat-vendors', function () {
 	return gulp.src(['build/js/jquery-3.2.1.min.js', 'build/js/jquery.lazy.min.js'])
+	.pipe(babel({
+		presets: ['@babel/env']
+	}))
 	.pipe(concat('script.min.js'))
 	.pipe(jsmin({
 		output: {
@@ -116,7 +119,7 @@ gulp.task('htmlbeautify', function () {
 
 // compiles main scss in css
 // then puts minified css into build/css
-// ON LINE 112: use "sort: sortCSSmq.desktopFirst" if dekstop first project or "sort: sortCSSmq" if mobile first
+// ON LINE 132: use "sort: sortCSSmq.desktopFirst" if dekstop first project or "sort: sortCSSmq" if mobile first
 gulp.task("style", function () {
 	return gulp.src("assets/styles/style.scss")
 	.pipe(wait(200))

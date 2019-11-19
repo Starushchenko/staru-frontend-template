@@ -59,8 +59,8 @@
     "sort-css-media-queries": "^1.4.3"
 	},
 	"browserslist": [
-		"last 1 version",
+		"last 4 version",
 		"> 1%",
-		"IE 10"
+		"IE 11"
 	]
 }
