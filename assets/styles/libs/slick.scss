@@ -1,3 +1,6 @@
+@import "../variables.scss";
+@import "../mixins.scss";
+
 /* Slider */
 .slick-slider {
     position: relative;
@@ -283,4 +286,58 @@
 .slick-dots li.slick-active button:before {
     opacity: .75;
     color: black;
+}
+
+// Custom styles
+.slick-arrow {
+	width: 65px;
+	height: 60px;
+	background: url(../img/arrow-left.svg) center no-repeat;
+	border: 1px solid $accent-color;
+	z-index: 2;
+}
+
+.slick-prev {
+	left: unset;
+	right: calc(100% + 30px);
+	transition: 0.3s;
+	background-size: 4px;
+}
+
+.slick-next {
+	transform: rotate(180deg) translateY(50%);
+	left: calc(100% + 30px);
+	right: unset;
+	transition: 0.3s;
+	background-size: 4px;
+}
+
+.slick-next:before, .slick-prev:before {
+	display: none;
+}
+
+.slick-next:focus, .slick-next:hover, .slick-prev:focus, .slick-prev:hover {
+	background: url(../img/arrow-left.svg) center no-repeat;
+	background-size: 8px;
+}
+
+
+@media (max-width: 1200px) {
+	.slick-arrow {
+		background: #fff url(../img/arrow-left.svg) center no-repeat;
+		opacity: 0.5;
+
+		&:hover {
+			opacity: 1;
+			background: #fff url(../img/arrow-left.svg) center no-repeat;
+		}
+	}
+	.slick-next {
+		left: unset;
+		right: 0;
+	}
+	.slick-prev {
+		right: unset;
+		left: 0;
+	}
 }
