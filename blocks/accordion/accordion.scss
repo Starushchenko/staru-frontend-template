@@ -5,133 +5,112 @@
 
 .accordion {
 	width: 100%;
-	background: #4d5158;
-	margin: 4em auto;
+	margin-bottom: 100px;
 }
 
 .accordion__item-content {
-	/* by default hide all sub menus */
 	display: none;
-	background: #fff;
-	padding: 25px 15px;
-}
+	width: 900px;
+	max-width: 100%;
+	transition: none;
+	padding-bottom: 28px;
+	font-size: 14px;
+	color: $gray-color;
+	padding-left: 25px;
 
-.accordion__item-body {
-	p {
-		line-height: 23px;
-		font-size: 16px;
-		margin-bottom: 0.7em;
+	p:not(:last-of-type) {
+		margin-bottom: 15px;
 	}
 }
 
-.accordion__item-image img {
-	margin-bottom: 20px;
-}
-
 .accordion__parent-item {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	border-bottom: 1px solid $disabled-color;
+	margin-bottom: 25px;
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
 }
 
 .accordion__toggler {
-	/* hide native checkbox */
-	position: absolute;
-	opacity: 0;
+	display: none;
 }
 
 .accordion__label {
 	position: relative;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	padding: 25px 15px 25px 25px;
-	color: #ffffff;
-	font-size: 1.6rem;
-	min-height: 100px;
+	color: $text-color;
+	min-height: 70px;
 	cursor: pointer;
-	background: #e4e4e4;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
-.accordion__label svg {
-	fill: #686868;
+.accordion__label-icon {
+	margin-top: 2px;
 }
 
 .accordion__label-title {
 	font-size: 18px;
-	line-height: 26px;
+	font-family: $noto;
+	font-weight: 600;
 	flex-grow: 1;
-	padding-left: 20px;
-	color: #000;
-}
+	padding: 20px 0 20px 25px;
+	position: relative;
 
-.no-touch .accordion__label:hover {
-	background: #52565d;
-}
-
-.accordion__label::after {
-	content: '';
-	display: inline-block;
-	min-width: 34px;
-	height: 19px;
-	position: static;
-	background-image: url(../img/accordion-arrow.svg);
-	background-repeat: no-repeat;
-}
-
-.accordion__toggler:checked + .accordion__label {
-	background: #99bd7c;
-	box-shadow: none;
-
-	svg {
-		fill: #fff;
-	}
-
-	.accordion__label-title {
-		color: #fff;
-		font-weight: bold;
+	&::before {
+		content: '';
+		background: url(../img/plus-gray.svg) center / contain no-repeat;
+		width: 10px;
+		height: 10px;
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 28px;
+		transform: none;
 	}
 }
+
+.accordion__toggler:checked + label .accordion__label-title {
+	&::before {
+		content: '';
+		transform: rotate(180deg);
+		background: url(../img/minus-pink.svg) center / contain no-repeat;
+		width: 10px;
+		height: 10px;
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 28px;
+	}
+}
+
+.accordion__toggler:checked ~ .accordion__item-content {
+	 display: block;
+ }
 
 .accordion__toggler:checked + label::after {
 	/* rotate arrow */
 	transform: rotate(180deg);
 }
 
-.accordion__toggler:checked + label + div,
-.accordion__toggler:checked + label:nth-of-type(n) + div {
-	/* use label:nth-of-type(n) to fix a bug on safari (<= 8.0.8) with multiple adjacent-sibling selectors*/
-	/* show children when item is checked */
-	display: block;
-}
-
-@media only screen and (min-width: 600px) {
-	.accordion__label {
-		padding: 10px;
-		font-size: 1.9rem;
-	}
-	.accordion__label::after {
-		right: 24px;
-	}
-}
-
-.accordion--animated label::after {
-	/* this class is used if you're using jquery to animate the accordion */
-	-webkit-transition: -webkit-transform 0.3s;
-	-moz-transition: -moz-transform 0.3s;
-	transition: transform 0.3s;
-}
-
 @media (max-width: 768px) {
-	.accordion {
-		display: block;
+	.accordion__label {
+		min-height: 60px;
 	}
-}
+	.accordion__label-title {
+		font-size: 16px;
+		padding: 15px 0 15px 20px;
 
-@media (max-width: 400px) {
-	.accordion__label svg {
-		max-width: 60px;
+		&::before {
+			top: 22px;
+		}
+	}
+	.accordion__toggler:checked + label .accordion__label-title {
+		&::before {
+			top: 22px;
+		}
+	}
+	.accordion__item-content {
+		padding-left: 20px;
 	}
 }
