@@ -39,7 +39,7 @@ gulp.task("copyAssets", function () {
 		"assets/js/*.js",
 		"assets/css/*.css",
 		"assets/fonts/*.{woff,woff2,otf,ttf}",
-		"assets/img/*.{png,jpg,gif,jpeg,svg}"
+		"assets/img/**/*.{png,jpg,gif,jpeg,svg}"
 	])
 	.pipe(copy('build', {
 		prefix: 1
@@ -55,6 +55,14 @@ gulp.task("copybemimages", function () {
 	.pipe(copy('build/img', {
 		prefix: 4
 	}));
+});
+
+
+// Копировать scss БЭМ-блоков в styles/blocks
+gulp.task("copyBlockSCSS", function () {
+	return gulp.src(['blocks/**/*.scss'])
+	.pipe(replace("../../assets/styles/", "../../"))
+	.pipe(gulp.dest('assets/styles/blocks/'));
 });
 
 
@@ -287,5 +295,5 @@ gulp.task("serve", gulp.series("clean", "concat", "htmlimport", "htmlbeautify", 
 
 
 // build
-gulp.task("build", gulp.series("clean", "concat", "htmlimport", "htmlbeautify", "style-prod", "copyAssets", "copybemimages", "jsmin", "svgsprite", "images", "svgimages", "criticalCSS", "concat-vendors"));
+gulp.task("build", gulp.series("clean", "htmlimport", "htmlbeautify", "copyAssets", "copybemimages", "concat", "jsmin", "svgsprite", "style-prod", "images", "svgimages"));
 
