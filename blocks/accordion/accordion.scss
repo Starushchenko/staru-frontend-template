@@ -24,7 +24,7 @@
 }
 
 .accordion__parent-item {
-	border-bottom: 1px solid $disabled-color;
+	border-bottom: 1px solid black;
 	margin-bottom: 25px;
 
 	&:last-of-type {
@@ -40,7 +40,7 @@
 	position: relative;
 	display: flex;
 	align-items: center;
-	color: $text-color;
+	color: black;
 	min-height: 70px;
 	cursor: pointer;
 }
@@ -51,7 +51,6 @@
 
 .accordion__label-title {
 	font-size: 18px;
-	font-family: $noto;
 	font-weight: 600;
 	flex-grow: 1;
 	padding: 20px 0 20px 25px;
@@ -85,8 +84,8 @@
 }
 
 .accordion__toggler:checked ~ .accordion__item-content {
-	 display: block;
- }
+	display: block;
+}
 
 .accordion__toggler:checked + label::after {
 	/* rotate arrow */
