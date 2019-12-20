@@ -15,7 +15,7 @@
 	transition: none;
 	padding-bottom: 28px;
 	font-size: 14px;
-	color: $gray-color;
+	color: black;
 	padding-left: 25px;
 
 	p:not(:last-of-type) {
@@ -24,7 +24,7 @@
 }
 
 .accordion__parent-item {
-	border-bottom: 1px solid $disabled-color;
+	border-bottom: 1px solid black;
 	margin-bottom: 25px;
 
 	&:last-of-type {
@@ -40,7 +40,7 @@
 	position: relative;
 	display: flex;
 	align-items: center;
-	color: $text-color;
+	color: black;
 	min-height: 70px;
 	cursor: pointer;
 }
@@ -51,7 +51,6 @@
 
 .accordion__label-title {
 	font-size: 18px;
-	font-family: $noto;
 	font-weight: 600;
 	flex-grow: 1;
 	padding: 20px 0 20px 25px;
@@ -59,7 +58,6 @@
 
 	&::before {
 		content: '';
-		background: url(../img/plus-gray.svg) center / contain no-repeat;
 		width: 10px;
 		height: 10px;
 		display: block;
@@ -74,7 +72,6 @@
 	&::before {
 		content: '';
 		transform: rotate(180deg);
-		background: url(../img/minus-pink.svg) center / contain no-repeat;
 		width: 10px;
 		height: 10px;
 		display: block;
