@@ -18,10 +18,21 @@ html {
 
 *, *::before, *::after {
 	box-sizing: inherit;
+	transition: 0.3s;
 
 	// scrollbar in Firefox
 	scrollbar-color: black gray;
 	scrollbar-width: thin;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+img.lazy[data-src] {
+	opacity: 0;
 }
 
 body {
@@ -65,7 +76,6 @@ textarea {
 	box-sizing: border-box;
 }
 
-
 .visually-hidden {
 	clip: rect(0 0 0 0);
 	width: 1px;
@@ -76,6 +86,10 @@ textarea {
 	position: absolute;
 	white-space: nowrap;
 	overflow: hidden;
+}
+
+.hidden {
+	display: none;
 }
 
 .invisible {
