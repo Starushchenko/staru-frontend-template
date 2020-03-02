@@ -17,7 +17,7 @@ $(document).ready(function () {
 	$(document).ready(function () {
 		$('.lazy').lazy({
 			effect: "fadeIn",
-			effectTime: 500,
+			effectTime: 300,
 			threshold: 500
 		});
 	});
