@@ -69,6 +69,9 @@ gulp.task("copyBlockSCSS", function () {
 // minifies compiled script.js in build (rename to script.min.js)
 gulp.task("jsmin", function () {
 	return gulp.src("build/js/script.js")
+	.pipe(babel({
+		presets: ['@babel/env']
+	}))
 	.pipe(jsmin())
 	.pipe(rename("script.min.js"))
 	.pipe(gulp.dest("build/js"))
