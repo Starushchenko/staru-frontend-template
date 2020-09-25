@@ -1,16 +1,41 @@
 "use strict";
 
 $(document).ready(function () {
-// Иницализация Fancybox без дополнительных кнопок
+
+	//функция при открытом Fancybox отменяет скролл страницы
+	function noScroll(state) {
+		let width = $('html').width(), scrollSize;
+
+		if (state == 'true') {
+			$("html").css({'overflow-y': 'hidden'});
+			scrollSize = $('html').width() - width;
+
+			if(scrollSize!=0) {
+				$("html").css({'margin-right': scrollSize});
+
+				// Тут можно дописать добавление отступов кастомным блокам
+				$(".fixed-header").css({'padding-right': scrollSize});
+			}
+		} else if (state == 'false') {
+			if ($('body').children('.fancybox-is-open').length==0) {
+				$("html").css({'overflow-y': '', 'margin-right': ''});
+
+				// Тут удаляем стили кастомных блоков когда скролл активируется
+				$(".fixed-header").css({'padding-right': ''});
+			}
+		}
+	}
+
+	// Иницализация Fancybox без дополнительных кнопок
 	$('[data-fancybox]').fancybox({
 		buttons: ["close"],
 		closeExisting: true,
 		touch: false,
-		beforeShow: function(){
-			$("html").addClass('html html--no-scroll');
+		onActivate: function () {
+			noScroll('true')
 		},
-		afterClose: function(){
-			$("html").removeClass('html html--no-scroll');
+		afterClose: function () {
+			noScroll('false');
 		},
 	});
 

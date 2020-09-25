@@ -5,14 +5,6 @@ html {
 	box-sizing: border-box;
 }
 
-.html {
-
-	&--no-scroll {
-		overflow-y: hidden;
-		margin-right: 15px;
-	}
-}
-
 // Экспериментально для отмены проскролла на элементах форм в iOS Safari
 @media (max-width: 600px) {
 	html {
