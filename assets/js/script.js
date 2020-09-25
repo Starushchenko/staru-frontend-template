@@ -3,7 +3,15 @@
 $(document).ready(function () {
 // Иницализация Fancybox без дополнительных кнопок
 	$('[data-fancybox]').fancybox({
-		buttons: ["close"]
+		buttons: ["close"],
+		closeExisting: true,
+		touch: false,
+		beforeShow: function(){
+			$("html").addClass('html html--no-scroll');
+		},
+		afterClose: function(){
+			$("html").removeClass('html html--no-scroll');
+		},
 	});
 
 	// Дополнительный класс для корневого элемента, если браузер - IE или Edge
