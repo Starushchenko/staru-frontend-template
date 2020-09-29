@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
 
-	//функция при открытом Fancybox отменяет скролл страницы
+	// функция при открытом Fancybox отменяет скролл страницы
 	function noScroll(state) {
 		let width = $('html').width(), scrollSize;
 
@@ -10,18 +10,18 @@ $(document).ready(function () {
 			$("html").css({'overflow-y': 'hidden'});
 			scrollSize = $('html').width() - width;
 
-			if(scrollSize!=0) {
+			if (scrollSize != 0) {
 				$("html").css({'margin-right': scrollSize});
 
 				// Тут можно дописать добавление отступов кастомным блокам
-				$(".fixed-header").css({'padding-right': scrollSize});
+				// $(".fixed-header").css({'padding-right': scrollSize});
 			}
 		} else if (state == 'false') {
-			if ($('body').children('.fancybox-is-open').length==0) {
+			if ($('body').children('.fancybox-is-open').length == 0) {
 				$("html").css({'overflow-y': '', 'margin-right': ''});
 
-				// Тут удаляем стили кастомных блоков когда скролл активируется
-				$(".fixed-header").css({'padding-right': ''});
+				// Тут удаляем стили кастомных блоков, когда скролл активируется
+				// $(".fixed-header").css({'padding-right': ''});
 			}
 		}
 	}
