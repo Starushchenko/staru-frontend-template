@@ -57,6 +57,7 @@
 		"gulp-imagemin": "^7.1.0",
 		"imagemin-optipng": "^8.0.0",
 		"natives": "^1.1.6",
+		"postcss": "^8.1.4",
 		"sort-css-media-queries": "^1.5.2"
 	},
 	"browserslist": [

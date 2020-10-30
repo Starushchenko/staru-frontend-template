@@ -17,6 +17,10 @@
 
 ` npm run blockcss ` - Сборка css-файлов для блоков отдельно в папку build/block-css.
 
+#### Known issues!
+
+Если после установки пакетов ` npm i ` вылетает ошибка с плагином PostCSS,
+выполнить команду ` npm i postcss `. Это временная ошибка зависимостей из-за [issue](https://github.com/postcss/autoprefixer/issues/1358)
 
 ### Обновление зависимостей
 

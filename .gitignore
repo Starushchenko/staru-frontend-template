@@ -4,4 +4,5 @@ node_modules/
 *.rar
 *.zip
 .idea
+.idea/vcs.xml
 package-lock.json
