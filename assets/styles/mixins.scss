@@ -166,12 +166,28 @@ $media-direction: max !default;
 	&::-webkit-input-placeholder { @content; }
 }
 
-// Миксин для подчеркивания элемента с background-image, требует указания background-position
-@mixin underline {
-	background-image: linear-gradient(to right, rgba(40, 40, 40, 0.5), rgba(40, 40, 40, 0.5));
+// Миксин для подчеркивания элемента с background-image (dashed)
+@mixin dashed-underline($gradient) {
+	background-image: $gradient;
+	background-size: 10px 1px;
+	background-repeat: repeat-x;
+	background-position: center 100%;
+}
+
+// Миксин для подчеркивания элемента с background-image (solid)
+@mixin underline($color...) {
+	background-image: linear-gradient(to right, $color, $color);
 	background-size: 1px 1px;
 	background-repeat: repeat-x;
-	/*need background-position*/
+	background-position: 0 100%;
+}
+
+// Миксин для подчеркивания элемента с background-image (градиент)
+@mixin gradient-underline($gradient) {
+	background-image: $gradient;
+	background-size: 100% 1px;
+	background-repeat: no-repeat;
+	background-position: center 100%;
 }
 
 // Миксин для ограничения контейнера блока
@@ -180,4 +196,12 @@ $media-direction: max !default;
 	max-width: 1280px;
 	margin: 0 auto;
 	box-sizing: border-box;
+}
+
+// Миксин задания градиента тексту
+@mixin text-gradient($gradient) {
+	background-image: $gradient; /* Standard syntax; must be last */
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
 }
