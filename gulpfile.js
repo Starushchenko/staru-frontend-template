@@ -258,9 +258,9 @@ gulp.task("watch", gulp.series("style", "concat", "jsmin", "htmlimport", functio
 		ui: false
 	});
 
-	gulp.watch(["assets/styles/**/*.{scss,sass}", "blocks/**/*.{scss,sass}"], gulp.series("style"));
-	gulp.watch(["assets/js/script.js", "blocks/**/*.js"], gulp.series("concat", "jsmin"));
-	gulp.watch(["./pages/**/*.html", "./blocks/**/*.html"], gulp.series("htmlimport"));
+	gulp.watch(["assets/styles/**/*.{scss,sass}", "blocks/**/*.{scss,sass}"], {usePolling: true}, gulp.series("style"));
+	gulp.watch(["assets/js/script.js", "blocks/**/*.js"], {usePolling: true}, gulp.series("concat", "jsmin"));
+	gulp.watch(["./pages/**/*.html", "./blocks/**/*.html"], {usePolling: true}, gulp.series("htmlimport"));
 }));
 
 
@@ -294,9 +294,9 @@ gulp.task("criticalCSS", function () {
 
 
 //start
-gulp.task("serve", gulp.series("clean", "concat", "htmlimport", "htmlbeautify", "copyAssets", "copybemimages", "jsmin", "svgsprite", "style", "watch" /*, "images", "svgimages"*/));
+gulp.task("serve", gulp.series("clean", "concat", "htmlimport", "htmlbeautify", "copyAssets", "copybemimages", "jsmin", "style", "watch" /*, "images", "svgimages"*/));
 
 
 // build
-gulp.task("build", gulp.series("clean", "htmlimport", "htmlbeautify", "copyAssets", "copybemimages", "concat", "jsmin", "svgsprite", "style-prod", "images", "svgimages"));
+gulp.task("build", gulp.series("clean", "htmlimport", "htmlbeautify", "copyAssets", "copybemimages", "concat", "jsmin", "style-prod", "images", "svgimages"));
 
