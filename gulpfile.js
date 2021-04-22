@@ -47,6 +47,17 @@ gulp.task("copyAssets", function () {
 });
 
 
+// copies images into build
+gulp.task("copyImages", function () {
+	return gulp.src([
+		"assets/img/**/*.{png,jpg,gif,jpeg,svg}"
+	])
+	.pipe(copy('build', {
+		prefix: 1
+	}));
+});
+
+
 // copies images for bem-blocks into build
 gulp.task("copybemimages", function () {
 	return gulp.src([
@@ -261,6 +272,7 @@ gulp.task("watch", gulp.series("style", "concat", "jsmin", "htmlimport", functio
 	gulp.watch(["assets/styles/**/*.{scss,sass}", "blocks/**/*.{scss,sass}"], {usePolling: true}, gulp.series("style"));
 	gulp.watch(["assets/js/script.js", "blocks/**/*.js"], {usePolling: true}, gulp.series("concat", "jsmin"));
 	gulp.watch(["./pages/**/*.html", "./blocks/**/*.html"], {usePolling: true}, gulp.series("htmlimport"));
+	gulp.watch(["assets/img/**/*.{png,jpg,gif,jpeg,svg}"], {usePolling: true}, gulp.series("copyImages"));
 }));
 
 
